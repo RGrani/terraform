@@ -21,7 +21,7 @@ agent any
        
         stage('Terraform Init') {
             steps {
-                  sh '''terraform init'''
+                  sh 'terraform init'
             }
         }
         
@@ -34,7 +34,7 @@ agent any
    
        stage('Terraform Apply') {
             steps {
-            sh '''terraform apply'''
+                sh 'terraform apply --auto-approve'
 
             }
         }
