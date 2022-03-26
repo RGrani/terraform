@@ -27,14 +27,14 @@ agent any
         
         stage('Terraform Plan') {
             steps {
-            sh 'terraform plan'
-
+            sh "terraform plan -input=false -out tfplan "
+            sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
    
        stage('Terraform Apply') {
             steps {
-                sh 'terraform apply --auto-approve'
+                sh 'terraform apply -input=false tfplan'
 
             }
         }
