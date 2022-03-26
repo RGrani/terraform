@@ -31,9 +31,7 @@ agent any
 
             }
         }
-    }
-    
-
+   
        stage('Terraform Apply') {
             steps {
             sh '''terraform apply'''
