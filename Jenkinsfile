@@ -41,7 +41,7 @@ agent any
 
      stage('Terraform Destroy') {
             steps {
-                sh 'terraform destroy -force'
+                sh 'terraform destroy -auto-approve'
 
             }
         }
