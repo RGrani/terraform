@@ -38,6 +38,14 @@ agent any
 
             }
         }
+
+     stage('Terraform Destroy') {
+            steps {
+                sh '''terraform apply -destroy'''
+
+            }
+        }
+
     }
 
 }
