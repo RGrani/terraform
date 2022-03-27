@@ -5,7 +5,7 @@
 resource "aws_instance" "EC2Terraform" {
   ami                    = var.ami
   instance_type          = var.ins_type
- # key_name               = "mumbai"
+  key_name               = "tests"
   vpc_security_group_ids = ["${aws_security_group.Security_TF.id}"]
   subnet_id              = aws_subnet.Subnet_1.id
   tags = {
