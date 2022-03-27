@@ -38,12 +38,7 @@ agent any
 
             }
         }
- stage('Terraform Destroy') {
-            steps {
-                sh 'terraform destroy -auto-approve'
 
-            }
-        }
     }
 
 }
