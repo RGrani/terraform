@@ -9,7 +9,7 @@ resource "aws_instance" "EC2Terraform" {
   vpc_security_group_ids = ["${aws_security_group.Security_TF.id}"]
   subnet_id              = aws_subnet.Subnet_1.id
   tags = {
-    Name = "Fantastic_instance"
+    Name = "F1_instance"
   }
   user_data = file("${path.module}/script.sh")
 }
@@ -22,14 +22,49 @@ resource "aws_instance" "EC2Terraform_1" {
   vpc_security_group_ids = ["${aws_security_group.Security_TF.id}"]
   subnet_id              = aws_subnet.Subnet_2.id
   tags = {
-    Name = "Fantastic_instance2"
+    Name = "F2_instance2"
   }
   user_data = file("${path.module}/script.sh")
 }
 
+# create EC2 in private subnet
+
+resource "aws_instance" "EC2Terraform_3" {
+  ami                    = var.ami
+  instance_type          = var.ins_type
+  key_name               = "tests"
+  vpc_security_group_ids = ["${aws_security_group.Security_TF.id}"]
+  subnet_id              = aws_subnet.application-subnet-1.id
+  associate_public_ip_address = false
+  tags = {
+    Name = "EC2_instance3"
+  }
 
 
+resource "aws_db_instance" "default" {
+  allocated_storage      = 10
+  db_subnet_group_name   = aws_db_subnet_group.default.id
+  engine                 = "mysql"
+  engine_version         = "8.0.20"
+  instance_class         = "db.t2.micro"
+  multi_az               = true
+  name                   = "mydb"
+  username               = "Jenkins"
+  password               = "Ranigupta@2117"
+  skip_final_snapshot    = true
+  vpc_security_group_ids = ["${aws_security_group.database-sg.id}"]
+}
+
+resource "aws_db_subnet_group" "default" {
+  name       = "main"
+  subnet_ids = [aws_subnet.database-subnet-1.id, aws_subnet.database-subnet-2.id]
+
+  tags = {
+    Name = "My DB subnet group"
+  }
+}
 
 output "address" {
+  
   value = aws_elb.EC2Terraform.dns_name
 }
