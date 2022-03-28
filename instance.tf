@@ -39,7 +39,7 @@ resource "aws_instance" "EC2Terraform_3" {
   tags = {
     Name = "EC2_instance3"
   }
-
+}
 
 resource "aws_db_instance" "default" {
   allocated_storage      = 10
