@@ -18,10 +18,5 @@ variable "versioning" {
   type = bool
   default = true
 }
-variable "tags" {
-  type = map
-  default = {
-    environment = "DEV"
-    terraform   = "true"
-    }
+
 }
