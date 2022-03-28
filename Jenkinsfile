@@ -32,26 +32,12 @@ agent any
             }
         }
    
-       stage('Terraform Apply') {
+       stage ("terraform Action") {
             steps {
-                sh 'terraform apply -input=false tfplan'
-
-            }
+                echo "Terraform action is --> ${action}"
+                sh ('terraform ${action} --auto-approve') 
+           }
         }
-<<<<<<< HEAD
- stage('Terraform Destroy') {
-=======
-        stage('Terraform Destroy') {
->>>>>>> 943322d9d953c5629b56ac2f47fe10647cc5d66d
-            steps {
-                sh 'terraform destroy -auto-approve'
-
-            }
-        }
-<<<<<<< HEAD
-=======
-      
->>>>>>> 943322d9d953c5629b56ac2f47fe10647cc5d66d
     }
 
 }
