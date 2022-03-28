@@ -10,13 +10,4 @@ variable "ins_type" {
 variable "image_name" {
   type = string
 }
-variable "bucket_prefix" {
-  type = string
-  default = "my-s3bucket-"
-}
-variable "versioning" {
-  type = bool
-  default = true
-}
-
 }
