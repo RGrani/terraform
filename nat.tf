@@ -27,7 +27,7 @@ resource "aws_nat_gateway" "nat" {
 
 # create Private route table
 
-resource "aws_route_table" "web-rt" {
+resource "aws_route_table" "private_rt" {
   vpc_id = aws_vpc.First_VPC.id
 
 
@@ -45,6 +45,6 @@ resource "aws_route_table" "web-rt" {
 
 resource "aws_route_table_association" "private" {
   subnet_id      = aws_subnet.application-subnet-1.id
-  route_table_id = aws_route_table.private.id
+  route_table_id = aws_route_table.private_rt.id
 }
 
