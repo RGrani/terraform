@@ -41,30 +41,6 @@ resource "aws_instance" "EC2Terraform_3" {
   }
 }
 
-# Create Database Sunet Group
- 
-resource "aws_db_subnet_group" "database_subnet" {
-  name       = "main"
-  subnet_ids = [aws_subnet.database-subnet-1.id, aws_subnet.database-subnet-2.id]
-
-resource "aws_db_instance" "database" {
-  allocated_storage      = 10
-  db_subnet_group_name   = aws_db_subnet_group.database_subnet.id
-  engine                 = "mysql"
-  engine_version         = "8.0.20"
-  instance_class         = "db.t2.micro"
-  multi_az               = true
-  name                   = "mydb"
-  #username               = "Jenkins"
-  #password               = "Ranigupta@2117"
-  skip_final_snapshot    = true
-  vpc_security_group_ids = ["${aws_security_group.database-sg.id}"]
-}
-
-  tags = {
-    Name = "My DB subnet group"
-  }
-}
 
 output "address" {
   
