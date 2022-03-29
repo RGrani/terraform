@@ -10,7 +10,7 @@ resource "aws_db_subnet_group" "databasesubnetgroup" {
 }
 
 resource "aws_db_instance" "db_instance" {
-  identifier             = "mysqldatabase"
+  identifier             = "mysqldb"
   allocated_storage      = 20
   db_subnet_group_name   = aws_db_subnet_group.databasesubnetgroup.id
   engine                 = "mysql"
