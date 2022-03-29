@@ -10,4 +10,4 @@ variable "ins_type" {
 variable "image_name" {
   type = string
 }
-}
+
